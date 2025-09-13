@@ -1,6 +1,5 @@
 <?php
 
-
 $name = isset($_POST['name']) ? htmlspecialchars(trim($_POST['name'])) : '';
 $email = isset($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL) : '';
 $subject = isset($_POST['subject']) ? htmlspecialchars(trim($_POST['subject'])) : '';
@@ -17,8 +16,6 @@ use PHPMailer\PHPMailer\SMTP;
 
 $mail = new PHPMailer(true);
 
-//$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-
 $mail->isSMTP();
 $mail->SMTPAuth = true;
 
@@ -29,15 +26,12 @@ $mail->Port = 587;
 $mail->Username = "arnoldsampson619@gmail.com";
 $mail->Password = "xcav vicn goys lipa";
 
-
-
 $mail->setFrom($email, $name); // Sender from form input
 $mail->addAddress("arnoldsampson619@gmail.com", "Arnold"); // Recipient
 $mail->addReplyTo($email, $name); // Reply-To from form
 
 $mail->Subject = $subject;
 $mail->Body = $message;
-
 
 try {
 	$mail->send();
